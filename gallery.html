@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gallery</title>
+	<style type="text/css">
+		.gallary {
+			position: absolute;
+		}
+		.gallery-image {
+			position: relative;
+			width: 1044px;
+			height: 670px;
+			background-color: #202529;
+		}
+		.current-img {
+			position: absolute;
+			max-height: 670px;
+			opacity: 0;
+			transition: opacity 1s;
+		}
+		.navigation {
+			position: relative;
+			width: 1044px;
+			max-height: 150px;
+			text-align: center;
+			top: 5px;
+		}
+		.nav-img {
+			position: relative;
+			display: inline-block;
+			max-height: 150px;
+			margin: 0;
+			padding: 0;
+		}
+		.nav-img:hover{
+			cursor: pointer;
+			cursor: hand;
+		}
+		.visible-img {
+			opacity: 1;
+		}
+		.gallary-control {
+			position: absolute;
+			width: 64px;
+			height: 50px;
+			background-color: #131619;
+			border: 1px solid white;
+			border-radius: 10px;
+			top: 310px;
+		}
+
+		.gallary-control-left {
+			left: 48px;
+		}
+		.gallary-control-right {
+			right: 48px;
+		}
+		.triangle {
+			position: absolute;
+			width: 0;
+		    height: 0;
+		    border-top: 10px solid transparent;
+		    border-bottom: 10px solid transparent;
+		    top: 16px;
+		}
+		.triangle-left {
+		    left: 20px;
+		    border-right: 20px solid white;
+		}
+		.triangle-right {
+			right: 20px;
+		    border-left: 20px solid white;
+		}
+	</style>
+</head>
+<body>
+	<div class="gallary">
+		<div class="gallery-image">
+			<img class="current-img visible-img" src="img/1.jpg">
+			<img class="current-img" src="img/2.jpg">
+			<img class="current-img" src="img/3.jpg">
+			<img class="current-img" src="img/4.jpg">
+			<img class="current-img" src="img/5.jpg">
+			<div class="gallary-control gallary-control-left">
+				<div class="triangle triangle-left"></div>
+			</div>
+			<div class="gallary-control gallary-control-right">
+				<div class="triangle triangle-right"></div>
+			</div>
+		</div>
+		<div class="navigation">
+			<img class="nav-img" src="img/1.jpg">
+			<img class="nav-img" src="img/2.jpg">
+			<img class="nav-img" src="img/3.jpg">
+			<img class="nav-img" src="img/4.jpg">
+			<img class="nav-img" src="img/5.jpg">
+		</div>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		(function() {
+			var carusel_width = 670;
+			var N = 5;
+			var sum = 4183; // should be calculated
+			var font_size = $('.wrapper').css('font-size');
+			var ratio = (carusel_width - parseInt(font_size, 10)*(N-1)) / sum;
+			$('.carusel-img').css({'max-width': ratio*600+'px'});
+
+			$('.current-img').each(function(){
+				var img_width = parseInt($(this).css('width'), 10);
+				var margin_img = (1044 - img_width)/2;
+				$(this).css({'margin-left': margin_img+'px',
+						     'margin-right': margin_img+'px'});
+			});
+
+		}());
+
+		$('.gallary-control-right').click(function(){
+			var current_img = $('.visible-img');
+			var next_img = $('.visible-img').next('.current-img');
+			if (typeof next_img[0] == 'object') {
+				current_img.removeClass('visible-img');
+				next_img.addClass('visible-img');
+			} else return false;
+		});
+
+		$('.gallary-control-left').click(function(){
+			var current_img = $('.visible-img');
+			var prev_img = $('.visible-img').prev('.current-img');
+			if (typeof prev_img[0] == 'object') {
+				current_img.removeClass('visible-img');
+				prev_img.addClass('visible-img');
+			} else return false;
+		});
+		
+		var nav_images = $('.navigation').find('.nav-img');
+		$('.nav-img').click(function(){
+			var ind = nav_images.index($(this)) + 1;
+			$('.visible-img').removeClass('visible-img');
+			var selected = $('.current-img:nth-of-type('+ind+')');
+			selected.addClass('visible-img');
+		})
+
+	</script>
+</body>
+</html>
