@@ -76,11 +76,19 @@
 <body>
 	<div class="gallary">
 		<div class="gallery-image">
-			<img class="current-img visible-img" src="img/1.jpg">
-			<img class="current-img" src="img/2.jpg">
-			<img class="current-img" src="img/3.jpg">
-			<img class="current-img" src="img/4.jpg">
-			<img class="current-img" src="img/5.jpg">
+<div class="gallery-image">
+			<img class="current-img visible-img" src="img/1.jpg" style="margin-left: 266.5px; margin-right: 266.5px;">
+			<img class="current-img" src="img/2.jpg" style="margin-left: 136.5px; margin-right: 136.5px;">
+			<img class="current-img" src="img/3.jpg" style="margin-left: 280.5px; margin-right: 280.5px;">
+			<img class="current-img" src="img/4.jpg" style="margin-left: 254px; margin-right: 254px;">
+			<img class="current-img" src="img/5.jpg" style="margin-left: 253.5px; margin-right: 253.5px;">
+			<div class="gallary-control gallary-control-left">
+				<div class="triangle triangle-left"></div>
+			</div>
+			<div class="gallary-control gallary-control-right">
+				<div class="triangle triangle-right"></div>
+			</div>
+		</div>
 			<div class="gallary-control gallary-control-left">
 				<div class="triangle triangle-left"></div>
 			</div>
@@ -107,12 +115,12 @@
 			var ratio = (carusel_width - parseInt(font_size, 10)*(N-1)) / sum;
 			$('.carusel-img').css({'max-width': ratio*600+'px'});
 
-			$('.current-img').each(function(){
+			/*$('.current-img').each(function(){
 				var img_width = parseInt($(this).css('width'), 10);
 				var margin_img = (1044 - img_width)/2;
 				$(this).css({'margin-left': margin_img+'px',
 						     'margin-right': margin_img+'px'});
-			});
+			});*/
 
 		}());
 
